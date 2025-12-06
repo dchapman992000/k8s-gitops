@@ -63,30 +63,3 @@ spec:
     app.kubernetes.io/name: tools
   sessionAffinity: None
   type: ClusterIP
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: tools-ingress
-  namespace: default
-  annotations:
-    nginx.ingress.kubernetes.io/enable-modsecurity: "true"
-    nginx.ingress.kubernetes.io/enable-owasp-core-rules: "false"
-    #cert-manager.io/cluster-issuer: "nameOfClusterIssuer"
-spec:
-  ingressClassName: nginx
-  tls:
-  - hosts:
-    - tools.localdev.me
-    secretName: tools-localdev-me-tls
-  rules:
-  - host: tools.localdev.me
-    http:
-      paths:
-      - backend:
-          service:
-            name: tools-service
-            port:
-              number: 80
-        path: /
-        pathType: Prefix
