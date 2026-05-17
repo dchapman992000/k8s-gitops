@@ -20,8 +20,8 @@ if ! command -v kubectl >/dev/null 2>&1; then
   exit 4
 fi
 
-# Namespace creation is handled by Terraform (`kubectl_apply_flux_namespace`).
-# The script only creates/updates the sops secret to avoid redundant namespace operations.
+# The Flux components manifest creates the namespace.
+# This script only creates/updates the SOPS secret.
 kubectl --kubeconfig="$KUBECONFIG_PATH" --context="$KUBE_CONTEXT" \
   create secret generic sops-age -n flux-system --from-file=age.agekey="$AGE_KEY_PATH" --dry-run=client -o yaml \
   | kubectl --kubeconfig="$KUBECONFIG_PATH" --context="$KUBE_CONTEXT" apply -f -
