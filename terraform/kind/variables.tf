@@ -1,7 +1,7 @@
 variable "kind_node_image" {
     description = "Docker Image"
     type = string
-    default = "kindest/node:v1.33.4"
+    default = "kindest/node:v1.35.1"
 }
 
 variable "kind_cluster_name" {
