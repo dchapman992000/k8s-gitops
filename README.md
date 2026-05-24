@@ -1,4 +1,4 @@
-# k8-fcos-gitops
+# k8s-gitops
 
 cluster1 is a bare bones POC with nginx ingress controller
 

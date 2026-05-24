@@ -3,18 +3,18 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: GitRepository
 metadata:
-  name: k8-fcos-gitops
+  name: k8s-gitops
   namespace: flux-system
 spec:
   interval: 3m0s
   ref:
     branch: main
-  url: https://github.com/dchapman992000/k8-fcos-gitops
+  url: https://github.com/dchapman992000/k8s-gitops
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: k8-fcos-gitops
+  name: k8s-gitops
   namespace: flux-system
 spec:
   decryption:
@@ -26,4 +26,4 @@ spec:
   prune: true
   sourceRef:
     kind: GitRepository
-    name: k8-fcos-gitops
+    name: k8s-gitops
